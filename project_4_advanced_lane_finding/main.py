@@ -1,5 +1,6 @@
-import cv2
+import sys
 import os
+import cv2
 import matplotlib.pyplot as plt
 from calibration_utils import calibrate_camera, undistort
 from binarization_utils import binarize
@@ -133,13 +134,15 @@ if __name__ == '__main__':
     # first things first: calibrate the camera
     ret, mtx, dist, rvecs, tvecs = calibrate_camera(calib_images_dir='camera_cal')
 
-    mode = 'images'
+    filename = sys.argv[1]
+
+    mode = 'video'
 
     if mode == 'video':
 
         selector = 'project'
-        clip = VideoFileClip('{}_video.mp4'.format(selector)).fl_image(process_pipeline)
-        clip.write_videofile('out_{}_{}.mp4'.format(selector, time_window), audio=False)
+        clip = VideoFileClip(filename).fl_image(process_pipeline)
+        clip.write_videofile('out_video.mp4', audio=False)
 
     else:
 
