@@ -137,7 +137,7 @@ def test_train_nn(train_nn):
             'labels': correct_label,
             'keep_prob': keep_prob,
             'learning_rate': learning_rate}
-        _prevent_print(train_nn, parameters)
+        # _prevent_print(train_nn, parameters)
 
 
 @test_safe
